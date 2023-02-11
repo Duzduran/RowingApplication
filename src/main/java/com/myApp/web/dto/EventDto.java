@@ -1,5 +1,6 @@
 package com.myApp.web.dto;
 
+import com.myApp.web.models.Club;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.Builder;
 import lombok.Data;
@@ -23,5 +24,5 @@ public class EventDto {
     private String photoUrl;
     private LocalDateTime createdOn;
     private LocalDate updatedOn;
-
+    private Club club;
 }

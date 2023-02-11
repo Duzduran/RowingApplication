@@ -48,7 +48,7 @@ public class EventController {
     @GetMapping("/events/{eventId}")
     public String viewEvent(@PathVariable("eventId") Long eventId, Model model){
         EventDto eventDto = eventService.findByEventId(eventId);
-        model.addAttribute("events", eventDto);
+        model.addAttribute("event", eventDto);
         return "events-detail";
     }
 
