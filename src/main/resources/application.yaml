@@ -1,0 +1,21 @@
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    password: 1881
+    url: jdbc:postgresql://localhost:5432/basics
+    username: postgres
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  security:
+    oauth2:
+      client:
+        registration:
+          facebook:
+            clientId: 1295941730965067
+            clientSecret: 5c399f71240beb6a43201bc57288e9c8
+            scope: email, public_profile
+    user:
+      name: test
+      password: test
