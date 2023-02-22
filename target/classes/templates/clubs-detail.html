@@ -28,9 +28,11 @@
               <h2 class="card-title">About this Rowing Club</h2>
               <!--/*@thymesVar id="title" type=""*/-->
               <p class="card-text" th:text="${club.title}"></p>
+              <div th:if="${user.id} == ${club.createdBy.id}">
               <a class="btn btn-primary" th:href="@{/clubs/{clubId}/delete(clubId=${club.id})}">Delete</a>
               <a class="btn btn-primary" th:href="@{/events/{clubId}/new(clubId=${club.id})}">Create Event</a>
-            </div>
+              </div>
+              </div>
           </div>
           <!-- Nested row for non-featured blog posts-->
           <div class="row">

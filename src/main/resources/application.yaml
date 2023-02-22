@@ -13,8 +13,8 @@ spring:
       client:
         registration:
           facebook:
-            clientId:
-            clientSecret:
+            clientId: 1295941730965067
+            clientSecret: 5c399f71240beb6a43201bc57288e9c8
             scope: email, public_profile
     user:
       name: test

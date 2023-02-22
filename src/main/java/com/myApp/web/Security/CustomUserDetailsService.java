@@ -26,15 +26,14 @@ public class CustomUserDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         UserEntity user = userRepository.findFirstByUsername(username);
         if(user != null) {
-            user.getRoles().stream().map((role) -> new SimpleGrantedAuthority(role.getName()))
-                           .collect(Collectors.toList());
-            return user;
-//            User authUser = new User(
-//                    user.getEmail(),
-//                    user.getPassword(),
-//                    user.getRoles().stream().map((role) -> new SimpleGrantedAuthority(role.getName()))
-//                            .collect(Collectors.toList()));
-//            return authUser;
+//            user.getRoles().stream().map((role) -> new SimpleGrantedAuthority(role.getName()))
+//                           .collect(Collectors.toList());
+//           return user;
+            return new User(
+                    user.getEmail(),
+                    user.getPassword(),
+                    user.getRoles().stream().map((role) -> new SimpleGrantedAuthority(role.getName()))
+                            .collect(Collectors.toList()));
         }else {
             throw new UsernameNotFoundException("Invalid username or password");
         }

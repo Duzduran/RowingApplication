@@ -28,8 +28,10 @@
             <h2 class="card-title">About this Rowing event</h2>
             <!--/*@thymesVar id="title" type=""*/-->
             <p class="card-text" th:text="${event.type}"></p>
+            <div th:if="${user.id} == ${event.club.createdBy.id}">
             <a class="btn btn-primary">Delete</a>
-            <a class="btn btn-primary">Create Event</a>
+            </div>
+            <a class="btn btn-primary">Details</a>
           </div>
         </div>
         <!-- Nested row for non-featured blog posts-->

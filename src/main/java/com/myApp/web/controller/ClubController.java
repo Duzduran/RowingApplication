@@ -1,10 +1,14 @@
 package com.myApp.web.controller;
 
 
+import com.myApp.web.Security.SecurityUtil;
 import com.myApp.web.dto.ClubDto;
 import com.myApp.web.models.Club;
+import com.myApp.web.models.UserEntity;
 import com.myApp.web.service.ClubService;
+import com.myApp.web.service.UserService;
 import jakarta.validation.Valid;
+import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,21 +20,31 @@ import java.util.List;
 @Controller
 public class ClubController {
     private ClubService clubService;
+    private UserService userService;
 
     @Autowired
-    public ClubController(ClubService clubService){
+    public ClubController(ClubService clubService, UserService userService){
         this.clubService = clubService;
+        this.userService = userService;
     }
 
     @GetMapping("/clubs")
     public String listClubs(Model model){
+        UserEntity user = new UserEntity();
         List<ClubDto> clubs = clubService.fidAllClubs();
+        String username = SecurityUtil.getSessionUser();
+        if(username != null){
+            user = userService.findByEmail(username);
+            model.addAttribute("user", user);
+        }
+        model.addAttribute("user", user);
         model.addAttribute("clubs",clubs);
         return "clubs-list";
     }
 
     @GetMapping("/clubs/new")
     public String createClubForm(Model model) {
+
         Club club = new Club();
         model.addAttribute("club", club);
         return "clubs-create";
@@ -50,7 +64,14 @@ public class ClubController {
     }
     @GetMapping("/clubs/{clubId}")
     public String clubDetail(@PathVariable("clubId") long clubId, Model model){
+        UserEntity user = new UserEntity();
         ClubDto clubDto = clubService.findClubById(clubId);
+        String username = SecurityUtil.getSessionUser();
+        if(username != null){
+            user = userService.findByEmail(username);
+            model.addAttribute("user", user);
+        }
+        model.addAttribute("user", user);
         model.addAttribute("club",clubDto);
         return "clubs-detail";
     }

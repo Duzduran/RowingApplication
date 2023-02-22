@@ -1,6 +1,7 @@
 package com.myApp.web.dto;
 
 
+import com.myApp.web.models.UserEntity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -26,7 +27,5 @@ public class ClubDto {
     private LocalDateTime createdOn;
     private LocalDateTime updatedOn;
     private List<EventDto> events;
-
-
-
+    private UserEntity createdBy;
 }
